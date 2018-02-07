@@ -1,0 +1,10 @@
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\bin\Debug\CarpetOrders.exe.config
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\bin\Debug\CarpetOrders.exe
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\bin\Debug\CarpetOrders.pdb
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.csprojResolveAssemblyReference.cache
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.frmCarpetOrders.resources
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.Properties.Resources.resources
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.csproj.GenerateResource.Cache
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.csproj.CoreCompileInputs.cache
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.exe
+E:\Development\Projects\RiderProjects\CarpetOrders\CarpetOrders\obj\Debug\CarpetOrders.pdb
