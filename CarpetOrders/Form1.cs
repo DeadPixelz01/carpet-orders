@@ -101,5 +101,21 @@ namespace CarpetOrders
         {
             Close();
         }
+
+        // Resetting and clearing fields.
+        // I know this looks bad, but it actually works!
+        // ... Yea, I'll go back and fix it later on.
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtDate.Clear();
+            txtName.Clear();
+            txtQuality.Clear();
+            txtWidth.Clear();
+            txtLength.Clear();
+            txtCalName.Clear();
+            txtArea.Clear();
+            txtDiscount.Clear();
+            txtTotalCost.Clear();
+        }
     }
 }

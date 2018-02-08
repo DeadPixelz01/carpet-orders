@@ -54,6 +54,7 @@
             this.btnCalculate = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCalName = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -286,11 +287,22 @@
             this.txtCalName.Size = new System.Drawing.Size(100, 20);
             this.txtCalName.TabIndex = 39;
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(670, 42);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 40;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FrmCarpetOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 608);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.txtCalName);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnCalculate);
@@ -352,6 +364,7 @@
 		private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCalName;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 
