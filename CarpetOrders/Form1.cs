@@ -33,13 +33,23 @@ namespace CarpetOrders
             // Defining variables and data types.
             // Linking them back to the form ('Form1.Designer.cs').
             // 'const' is used here because strInvalidSelection's string value will never change.
-            const string strInvalidSelection = "Invalid selection! Please choose between Quality No. 1, 2, 3 or 4"; // String.
+            const string strInvalidSelection = "Invalid selection! Choose between Quality No. 1, 2, 3 or 4"; // String.
             var strName = txtName.Text; // String (This was never used, so why did we ask for it!? I fixed this :p).
             var intQualityNo = int.Parse(txtQuality.Text); // Integer.
             decimal decRWidth = decimal.Parse(txtWidth.Text), decRLength = decimal.Parse(txtLength.Text); // Decimal.
             var decRArea = decRWidth * decRLength; // Calculating the room's area (Lenght * Width = Area).
             decimal decDiscount, decCost, decTotalCost; // Decimal.
             var boolTradeDiscount = chkDiscount.Checked; // Boolean.
+
+            // Setting to 'Read Only'.
+            // The following just sets the calculated results to 'Read Only'. This is done so that the user
+            // can't change the results by hand. I wish there was a way to implement this later on in the script
+            // (between lines 104 and 108, when I make give the textboxes vaules).
+            txtCalName.ReadOnly = true;
+            txtArea.ReadOnly = true;
+            txtCost.ReadOnly = true;
+            txtDiscount.ReadOnly = true;
+            txtTotalCost.ReadOnly = true;
 
             // Using Switches and calculating Cost.
             // Since the user has to choose between quality 1-4, the variable 'intQualityNo' is subbed into the switch.
@@ -97,6 +107,9 @@ namespace CarpetOrders
             txtTotalCost.Text = decTotalCost.ToString(CultureInfo.CurrentCulture);
         }
 
+        // Exit button.
+        // When 'btnExit' is clicked, it runs the command 'Close();'.
+        // This will just stop and close the program, self explanatory.
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
