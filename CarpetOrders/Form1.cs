@@ -5,6 +5,7 @@
 // From my understanding, these are like the C# equivalent to Python imports.
 // I'd like to imagine this where developers could import/use 3rd party packages.
 using System;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -15,6 +16,16 @@ namespace CarpetOrders
         public FrmCarpetOrders()
         {
             InitializeComponent();
+
+            // Setting to 'Read Only'.
+            // The following just sets the calculated results to 'Read Only'. This is done so that the user
+            // can't change the results by hand. I wish there was a way to implement this later on in the script
+            // (between lines 104 and 108, when I make give the textboxes vaules).
+            txtCalName.ReadOnly = true;
+            txtArea.ReadOnly = true;
+            txtCost.ReadOnly = true;
+            txtDiscount.ReadOnly = true;
+            txtTotalCost.ReadOnly = true;
         }
 
         // Date.
@@ -38,18 +49,8 @@ namespace CarpetOrders
             var intQualityNo = int.Parse(txtQuality.Text); // Integer.
             decimal decRWidth = decimal.Parse(txtWidth.Text), decRLength = decimal.Parse(txtLength.Text); // Decimal.
             var decRArea = decRWidth * decRLength; // Calculating the room's area (Lenght * Width = Area).
-            decimal decDiscount, decCost, decTotalCost; // Decimal.
+            decimal decDiscount, decCost; // Decimal.
             var boolTradeDiscount = chkDiscount.Checked; // Boolean.
-
-            // Setting to 'Read Only'.
-            // The following just sets the calculated results to 'Read Only'. This is done so that the user
-            // can't change the results by hand. I wish there was a way to implement this later on in the script
-            // (between lines 104 and 108, when I make give the textboxes vaules).
-            txtCalName.ReadOnly = true;
-            txtArea.ReadOnly = true;
-            txtCost.ReadOnly = true;
-            txtDiscount.ReadOnly = true;
-            txtTotalCost.ReadOnly = true;
 
             // Using Switches and calculating Cost.
             // Since the user has to choose between quality 1-4, the variable 'intQualityNo' is subbed into the switch.
@@ -94,17 +95,28 @@ namespace CarpetOrders
                 decDiscount = 0;
             }
 
-            // To calculate the new price, this line subtracts the discount from the cost.
-            decTotalCost = decCost - decDiscount;
+            // To calculate the total cost, this line subtracts the discount from the cost.
+            var decTotalCost = decCost - decDiscount;
+
+            // Formating.
+            // I had to introduce these new variables so that they can be formated into local currency.
+            var strCost = $"{decCost:C}";
+            var strDiscount = $"{decDiscount:C}";
+            var strTotalCost = $"{decTotalCost:C}";
+
+            txtArea.BackColor = Color.LightYellow;
+            txtCost.BackColor = Color.LightGreen;
+            txtTotalCost.BackColor = Color.LightGreen;
+            txtDiscount.BackColor = Color.LightCoral;
 
             // Converting back to strings.
             // A lot of the variables have the data type of integer and decimal,
             // so they need to be converted back into strings so that they can be displayed within a textbox.
             txtCalName.Text = strName;
             txtArea.Text = decRArea.ToString(CultureInfo.CurrentCulture);
-            txtCost.Text = decCost.ToString(CultureInfo.CurrentCulture);
-            txtDiscount.Text = decDiscount.ToString(CultureInfo.CurrentCulture);
-            txtTotalCost.Text = decTotalCost.ToString(CultureInfo.CurrentCulture);
+            txtCost.Text = strCost.ToString(CultureInfo.CurrentCulture);
+            txtDiscount.Text = strDiscount.ToString(CultureInfo.CurrentCulture);
+            txtTotalCost.Text = strTotalCost.ToString(CultureInfo.CurrentCulture);
         }
 
         // Exit button.
@@ -116,19 +128,22 @@ namespace CarpetOrders
         }
 
         // Resetting and clearing fields.
-        // I know this looks bad, but it actually works!
-        // ... Yea, I'll go back and fix it later on.
+        // The following loop clears ever textbox within the form.
+        // It's now a loop!
         private void btnReset_Click(object sender, EventArgs e)
         {
-            txtDate.Clear();
-            txtName.Clear();
-            txtQuality.Clear();
-            txtWidth.Clear();
-            txtLength.Clear();
-            txtCalName.Clear();
-            txtArea.Clear();
-            txtDiscount.Clear();
-            txtTotalCost.Clear();
+            void FuncClear(Control.ControlCollection controls)
+            {
+                foreach (Control clearControl in controls)
+                    if (clearControl is TextBox)
+                        (clearControl as TextBox).Clear();
+                    else
+                    {
+                        FuncClear(clearControl.Controls);
+                    }
+            }
+
+            FuncClear(Controls);
         }
     }
 }
