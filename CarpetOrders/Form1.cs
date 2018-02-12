@@ -20,7 +20,7 @@ namespace CarpetOrders
             // Setting to 'Read Only'.
             // The following just sets the calculated results to 'Read Only'. This is done so that the user
             // can't change the results by hand. I wish there was a way to implement this later on in the script
-            // (between lines 104 and 108, when I make give the textboxes vaules).
+            // (between lines 104 and 108, when I make and give the textboxes values).
             txtCalName.ReadOnly = true;
             txtArea.ReadOnly = true;
             txtCost.ReadOnly = true;
@@ -103,7 +103,10 @@ namespace CarpetOrders
             var strCost = $"{decCost:C}";
             var strDiscount = $"{decDiscount:C}";
             var strTotalCost = $"{decTotalCost:C}";
-
+            // Colors.
+            // I know it's slept as colour, but most programming languages use 'American English' isn't of
+            // 'British English'. So as soon as I start programming, I throw all my spelling out the
+            // door...
             txtArea.BackColor = Color.LightYellow;
             txtCost.BackColor = Color.LightGreen;
             txtTotalCost.BackColor = Color.LightGreen;
@@ -128,7 +131,7 @@ namespace CarpetOrders
         }
 
         // Resetting and clearing fields.
-        // The following loop clears ever textbox within the form.
+        // The following loop clears every textbox within the form.
         // It's now a loop!
         private void btnReset_Click(object sender, EventArgs e)
         {
