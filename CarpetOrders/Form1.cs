@@ -103,13 +103,10 @@ namespace CarpetOrders
             var strCost = $"{decCost:C}";
             var strDiscount = $"{decDiscount:C}";
             var strTotalCost = $"{decTotalCost:C}";
-
             // Colors.
-            // The property 'BackColor' sets the background color of the following textboxes once the user clicks
-            // the calculate button.
-            // -- Side note ---
-            // I know that it's spelt 'colours', but when it comes to programming most languages refuse to use British
-            // English.
+            // I know it's slept as colour, but most programming languages use 'American English' isn't of
+            // 'British English'. So as soon as I start programming, I throw all my spelling out the
+            // door...
             txtArea.BackColor = Color.LightYellow;
             txtCost.BackColor = Color.LightGreen;
             txtTotalCost.BackColor = Color.LightGreen;
@@ -134,7 +131,7 @@ namespace CarpetOrders
         }
 
         // Resetting and clearing fields.
-        // The following loop clears ever textbox within the form.
+        // The following loop clears every textbox within the form.
         // It's now a loop!
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -150,15 +147,6 @@ namespace CarpetOrders
             }
 
             FuncClear(Controls);
-        }
-
-        // 'Theme Changer' button.
-        // The following button is meant to invert the forms color scheme and will in theory offer the user the choice
-        // of using a dark or light theme.
-        // This feature is a work in progress and is currently on the back burner when it comes to development.
-        private void btnTheme_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
