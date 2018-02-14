@@ -55,6 +55,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtCalName = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnTheme = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -248,13 +249,12 @@
             this.txtDate.Name = "txtDate";
             this.txtDate.Size = new System.Drawing.Size(100, 20);
             this.txtDate.TabIndex = 35;
-            this.txtDate.TextChanged += new System.EventHandler(this.txtDate_TextChanged);
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(670, 12);
+            this.btnExit.Location = new System.Drawing.Point(655, 12);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(90, 23);
             this.btnExit.TabIndex = 36;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -289,19 +289,30 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(670, 42);
+            this.btnReset.Location = new System.Drawing.Point(655, 42);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.Size = new System.Drawing.Size(90, 23);
             this.btnReset.TabIndex = 40;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnTheme
+            // 
+            this.btnTheme.Location = new System.Drawing.Point(655, 71);
+            this.btnTheme.Name = "btnTheme";
+            this.btnTheme.Size = new System.Drawing.Size(90, 23);
+            this.btnTheme.TabIndex = 41;
+            this.btnTheme.Text = "Change theme";
+            this.btnTheme.UseVisualStyleBackColor = true;
+            this.btnTheme.Click += new System.EventHandler(this.btnTheme_Click);
             // 
             // FrmCarpetOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 608);
+            this.Controls.Add(this.btnTheme);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.txtCalName);
             this.Controls.Add(this.label13);
@@ -365,6 +376,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCalName;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnTheme;
     }
 }
 

@@ -17,24 +17,24 @@ namespace CarpetOrders
         {
             InitializeComponent();
 
+            // Date.
+            // The following line auto loads the system's date.
+            // See line 23 ("dd/MM/yyyy") to change the format.
+            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
             // Setting to 'Read Only'.
             // The following just sets the calculated results to 'Read Only'. This is done so that the user
             // can't change the results by hand. I wish there was a way to implement this later on in the script
             // (between lines 104 and 108, when I make give the textboxes vaules).
+            // -- Side Note --
+            // I should probably stop referencing lines in my internal documentation because this c# script is
+            // always under going maintenance :p.
+            txtDate.ReadOnly = true;
             txtCalName.ReadOnly = true;
             txtArea.ReadOnly = true;
             txtCost.ReadOnly = true;
             txtDiscount.ReadOnly = true;
             txtTotalCost.ReadOnly = true;
-        }
-
-        // Date.
-        // This has been setup so that when the user goes to enter the date,
-        // the program will pick up on this and instantly fill the textbox with the system's current date.
-        // See line 26 ("dd/MM/yyyy") to change the format.
-        private void txtDate_TextChanged(object sender, EventArgs e)
-        {
-            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         // Calculation button.
@@ -104,6 +104,12 @@ namespace CarpetOrders
             var strDiscount = $"{decDiscount:C}";
             var strTotalCost = $"{decTotalCost:C}";
 
+            // Colors.
+            // The property 'BackColor' sets the background color of the following textboxes once the user clicks
+            // the calculate button.
+            // -- Side note ---
+            // I know that it's spelt 'colours', but when it comes to programming most languages refuse to use British
+            // English.
             txtArea.BackColor = Color.LightYellow;
             txtCost.BackColor = Color.LightGreen;
             txtTotalCost.BackColor = Color.LightGreen;
@@ -144,6 +150,15 @@ namespace CarpetOrders
             }
 
             FuncClear(Controls);
+        }
+
+        // 'Theme Changer' button.
+        // The following button is meant to invert the forms color scheme and will in theory offer the user the choice
+        // of using a dark or light theme.
+        // This feature is a work in progress and is currently on the back burner when it comes to development.
+        private void btnTheme_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
