@@ -104,7 +104,7 @@ namespace CarpetOrders
             var strDiscount = $"{decDiscount:C}";
             var strTotalCost = $"{decTotalCost:C}";
             // Colors.
-            // I know it's slept as colour, but most programming languages use 'American English' isn't of
+            // I know it's spelt colour, but most programming languages use 'American English' isn't of
             // 'British English'. So as soon as I start programming, I throw all my spelling out the
             // door...
             txtArea.BackColor = Color.LightYellow;
