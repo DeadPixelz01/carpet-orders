@@ -5,6 +5,8 @@
 // From my understanding, these are like the C# equivalent to Python imports.
 // I'd like to imagine this where developers could import/use 3rd party packages.
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -19,7 +21,7 @@ namespace CarpetOrders
 
             // Date.
             // The following line auto loads the system's date.
-            // See line 23 ("dd/MM/yyyy") to change the format.
+            // See line 25 ("dd/MM/yyyy") to change the format.
             txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
             // Setting to 'Read Only'.
@@ -49,77 +51,69 @@ namespace CarpetOrders
             var intQualityNo = int.Parse(txtQuality.Text); // Integer.
             decimal decRWidth = decimal.Parse(txtWidth.Text), decRLength = decimal.Parse(txtLength.Text); // Decimal.
             var decRArea = decRWidth * decRLength; // Calculating the room's area (Lenght * Width = Area).
-            decimal decDiscount, decCost; // Decimal.
             var boolTradeDiscount = chkDiscount.Checked; // Boolean.
 
-            // Using Switches and calculating Cost.
-            // Since the user has to choose between quality 1-4, the variable 'intQualityNo' is subbed into the switch.
-            // For example if the user entered '1', the variable cost would equal their area multiplied by 100.
+            // Using Dictionaries and calculating Cost.
+            // Since the user has to choose between quality 1-4, the variable 'intQualityNo' is subbed into the
+            // dictionary. For example if the user entered '1', the variable cost would equal their area multiplied by
+            // 100.
             // -- Side note --
-            // I'm probably going to end up replacing this ugly looking switch in favour of a dictionary.
-            // Dictionaries work better and look cleaner, and the only reason I haven't moved to using one
-            // is because I have no idea how to they work in C#. I learned the basics overnight... That was a very long,
-            // painfull night...
-            switch (intQualityNo)
-            {
-                case 1:
-                    decCost = decRArea * 100; // multiply by 100.
-                    break;
-                case 2:
-                    decCost = decRArea * 70; // multiply by 70.
-                    break;
-                case 3:
-                    decCost = decRArea * 45; // multiply by 45.
-                    break;
-                case 4:
-                    decCost = decRArea * 30; // multiply by 30.
-                    break;
-                // If the user doesn't enter a valid option, it defaults to this error:
-                default:
-                    decCost = 0;
-                    Console.WriteLine(strInvalidSelection);
-                    break;
-            }
+            // This was original a switch but as of 2/18/2018, I've turned it into a dictionary. Look at how much
+            // neater it is!
+            var qualityList = new Dictionary<int, int> {{1, 100}, {2, 70}, {3, 45}, {4, 30}};
 
-            // Calculating a discount.
-            // If the user asked for a Trade discount, then...
-            if (boolTradeDiscount)
+            if (qualityList.ContainsKey(intQualityNo))
             {
-                // Discount is equal to the cost, multiplied by 0.1
-                decDiscount = decCost * Convert.ToDecimal(0.1);
+                var decCost = qualityList[intQualityNo] * decRArea; // Decimal.
+
+                // Calculating a discount.
+                // If the user asked for a Trade discount, then...
+                decimal decDiscount; // Decimal.
+                if (boolTradeDiscount)
+                {
+                    // Discount is equal to the cost, multiplied by 0.1
+                    decDiscount = decCost * Convert.ToDecimal(0.1);
+                }
+                // If they didn't, then...
+                else
+                {
+                    // The user is given a discount of $0.
+                    decDiscount = 0;
+                }
+
+                // To calculate the total cost, this line subtracts the discount from the cost.
+                var decTotalCost = decCost - decDiscount;
+
+                // Formating.
+                // I had to introduce these new variables so that they can be formated into local currency.
+                var strCost = $"{decCost:C}";
+                var strDiscount = $"{decDiscount:C}";
+                var strTotalCost = $"{decTotalCost:C}";
+
+                // Colors.
+                // The property 'BackColor' sets the background color of the following textboxes once the user clicks
+                // the calculate button.
+                // -- Side note ---
+                // I know that it's spelt 'colours', but when it comes to programming most languages refuse to use British
+                // English.
+                txtArea.BackColor = Color.LightYellow;
+                txtCost.BackColor = Color.LightGreen;
+                txtTotalCost.BackColor = Color.LightGreen;
+                txtDiscount.BackColor = Color.LightCoral;
+
+                // Converting back to strings.
+                // A lot of the variables have the data type of integer and decimal,
+                // so they need to be converted back into strings so that they can be displayed within a textbox.
+                txtCalName.Text = strName;
+                txtArea.Text = decRArea.ToString(CultureInfo.CurrentCulture);
+                txtCost.Text = strCost.ToString(CultureInfo.CurrentCulture);
+                txtDiscount.Text = strDiscount.ToString(CultureInfo.CurrentCulture);
+                txtTotalCost.Text = strTotalCost.ToString(CultureInfo.CurrentCulture);
             }
-            // If they didn't, then...
             else
             {
-                // The user is given a discount of $0.
-                decDiscount = 0;
+                Console.WriteLine(strInvalidSelection);
             }
-
-            // To calculate the total cost, this line subtracts the discount from the cost.
-            var decTotalCost = decCost - decDiscount;
-
-            // Formating.
-            // I had to introduce these new variables so that they can be formated into local currency.
-            var strCost = $"{decCost:C}";
-            var strDiscount = $"{decDiscount:C}";
-            var strTotalCost = $"{decTotalCost:C}";
-            // Colors.
-            // I know it's slept as colour, but most programming languages use 'American English' isn't of
-            // 'British English'. So as soon as I start programming, I throw all my spelling out the
-            // door...
-            txtArea.BackColor = Color.LightYellow;
-            txtCost.BackColor = Color.LightGreen;
-            txtTotalCost.BackColor = Color.LightGreen;
-            txtDiscount.BackColor = Color.LightCoral;
-
-            // Converting back to strings.
-            // A lot of the variables have the data type of integer and decimal,
-            // so they need to be converted back into strings so that they can be displayed within a textbox.
-            txtCalName.Text = strName;
-            txtArea.Text = decRArea.ToString(CultureInfo.CurrentCulture);
-            txtCost.Text = strCost.ToString(CultureInfo.CurrentCulture);
-            txtDiscount.Text = strDiscount.ToString(CultureInfo.CurrentCulture);
-            txtTotalCost.Text = strTotalCost.ToString(CultureInfo.CurrentCulture);
         }
 
         // Exit button.
@@ -131,11 +125,11 @@ namespace CarpetOrders
         }
 
         // Resetting and clearing fields.
-        // The following loop clears every textbox within the form.
+        // The following loop clears ever textbox within the form.
         // It's now a loop!
         private void btnReset_Click(object sender, EventArgs e)
         {
-            void FuncClear(Control.ControlCollection controls)
+            void FuncClear(IEnumerable controls)
             {
                 foreach (Control clearControl in controls)
                     if (clearControl is TextBox)
