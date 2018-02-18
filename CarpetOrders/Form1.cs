@@ -111,6 +111,35 @@ namespace CarpetOrders
             {
                 Console.WriteLine(strInvalidSelection);
             }
+<<<<<<< HEAD
+=======
+
+            // To calculate the total cost, this line subtracts the discount from the cost.
+            var decTotalCost = decCost - decDiscount;
+
+            // Formating.
+            // I had to introduce these new variables so that they can be formated into local currency.
+            var strCost = $"{decCost:C}";
+            var strDiscount = $"{decDiscount:C}";
+            var strTotalCost = $"{decTotalCost:C}";
+            // Colors.
+            // I know it's spelt colour, but most programming languages use 'American English' isn't of
+            // 'British English'. So as soon as I start programming, I throw all my spelling out the
+            // door...
+            txtArea.BackColor = Color.LightYellow;
+            txtCost.BackColor = Color.LightGreen;
+            txtTotalCost.BackColor = Color.LightGreen;
+            txtDiscount.BackColor = Color.LightCoral;
+
+            // Converting back to strings.
+            // A lot of the variables have the data type of integer and decimal,
+            // so they need to be converted back into strings so that they can be displayed within a textbox.
+            txtCalName.Text = strName;
+            txtArea.Text = decRArea.ToString(CultureInfo.CurrentCulture);
+            txtCost.Text = strCost.ToString(CultureInfo.CurrentCulture);
+            txtDiscount.Text = strDiscount.ToString(CultureInfo.CurrentCulture);
+            txtTotalCost.Text = strTotalCost.ToString(CultureInfo.CurrentCulture);
+>>>>>>> 62bd0575498ce595780cfd417cffa3af7a2f7af2
         }
 
         // Exit button.
@@ -122,7 +151,7 @@ namespace CarpetOrders
         }
 
         // Resetting and clearing fields.
-        // The following loop clears ever textbox within the form.
+        // The following loop clears every textbox within the form.
         // It's now a loop!
         private void btnReset_Click(object sender, EventArgs e)
         {
