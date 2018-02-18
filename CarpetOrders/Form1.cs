@@ -89,13 +89,10 @@ namespace CarpetOrders
                 var strCost = $"{decCost:C}";
                 var strDiscount = $"{decDiscount:C}";
                 var strTotalCost = $"{decTotalCost:C}";
-
                 // Colors.
-                // The property 'BackColor' sets the background color of the following textboxes once the user clicks
-                // the calculate button.
-                // -- Side note ---
-                // I know that it's spelt 'colours', but when it comes to programming most languages refuse to use British
-                // English.
+                // I know it's spelt colour, but most programming languages use 'American English' isn't of
+                // 'British English'. So as soon as I start programming, I throw all my spelling out the
+                // door...
                 txtArea.BackColor = Color.LightYellow;
                 txtCost.BackColor = Color.LightGreen;
                 txtTotalCost.BackColor = Color.LightGreen;
